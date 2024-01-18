@@ -2,6 +2,7 @@ import { Inter } from 'next/font/google';
 import './globals.css';
 import Providers from '@/components/Providers';
 import Navbar from '@/components/Navbar';
+import { Toaster } from '@/components/ui/sonner';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -13,10 +14,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={inter.className}>
+      <body className={`${inter.className} h-screen flex flex-col`}>
         <Providers attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           <Navbar />
-          <div className="py-3">{children}</div>
+          <div className="py-3 flex-1">{children}</div>
+          <Toaster />
         </Providers>
       </body>
     </html>
