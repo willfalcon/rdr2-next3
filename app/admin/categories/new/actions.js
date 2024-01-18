@@ -1,6 +1,7 @@
 'use server';
 
 import { prisma } from '@/lib/prisma';
+import { revalidatePath } from 'next/cache';
 
 export default async function createCategory(values) {
   const newCategory = await prisma.category.create({
@@ -14,5 +15,6 @@ export default async function createCategory(values) {
       },
     },
   });
+  revalidatePath('/admin/categories');
   return newCategory;
 }
